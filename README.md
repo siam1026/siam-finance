@@ -5,7 +5,7 @@
 </p>
 
 <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">暹罗理财 v1.0</h1>
-<h4 align="center">基于SpringBoot开发的餐饮理财系统</h4>
+<h4 align="center">基于SpringBoot开发的个人家庭理财记账系统</h4>
 
 <p align="center">
 <a target="_blank" href="https://gitee.com/siam1026/siam-finance">
@@ -57,8 +57,7 @@
 [请加入QQ群或微信群获取](https://gitee.com/siam1026/siam-finance#关注和交流)，进群前先在右上角Star本项目
 
 ## 关联产品
-暹罗外卖 - 多商户入驻的外卖配送系统，微服务架构：[https://gitee.com/siam1026/siam-cloud](https://gitee.com/siam1026/siam-cloud)
-
+暹罗外卖 - 多商户入驻的外卖配送系统，微服务架构：[https://gitee.com/siam1026/siam-cloud](https://gitee.com/siam1026/siam-cloud)  
 暹罗点餐 - 多门店连锁品牌的餐饮点餐系统，单体服务架构：[https://gitee.com/siam1026/siam-server](https://gitee.com/siam1026/siam-server)
 
 
