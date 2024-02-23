@@ -33,49 +33,39 @@
 
 ## 项目介绍
 
-暹罗理财是一款Java餐饮理财系统，适用于多门店的连锁品牌，对标蜜雪冰城、瑞幸咖啡。系统包含用户端、商家端、配送端以及总管理后台；
+暹罗理财是一款Java个人家庭理财记账系统，该系统包含数据中心、资金管理、基金投资、股票投资、可转债投资、系统配置等核心功能，支持OCR一键识别录入。
 
-1. 门店管理，门店权限
-2. 商品管理，单规格、多规格商品管理，品牌、分类管理、商品评价、商品组
-3. 库存管理，门店要货 、门店调拨、商品入库、商品出库、商品盘点
-4. 订单管理，订单支付、发货、取消、售后等
-5. 同城配送，配售收费、配送人员
-6. 会员管理，会员列表、会员等级、会员提现等
-7. 内容管理，官方资讯、活动通知、素材管理、常见问题
-8. 营销推广，首页轮播、广告管理、优惠券、邀请好友注册返现
-9. 应用设置，基础设置、微信支付、多媒体存储、短信设置
-10. 统计分析，商品销量统计、会员增长统计、订单销量统计
-11. 积分商城，商品管理、营销管理、物流管理等
-12. 订单小票打印，本地打印、云端打印
-13. Excel数据导出，导出表格更加美观、可视
+1. 数据中心
+2. 资金管理，资金分类、动态资金分类记录菜单展示
+3. 基金投资，统计分析、基金列表、短线、中长线
+4. 股票投资，统计分析、基金列表、短线、中长线
+5. 可转债投资，统计分析、基金列表、短线、中长线
+6. 系统配置
+7. OCR一键导入识别
 
 
 ## 软件架构
 
 * 前端使用uni-app开发，可打包部署到微信小程序、APP、H5
 * Web端使用vue + Element开发
-* 服务端使用java语言开发，技术栈：Spring Boot + Redis + RocketMQ + WebSocket + ElasticSearch + ELK + SpringBoot Admin
+* 服务端使用java语言开发，技术栈：Spring Boot + Redis + ELK + SpringBoot Admin
 
 ## 相关资料获取
 
 1. 获取sql文件
-2. 获取用户端小程序、商家端小程序、骑手端小程序、骑手管理web端代码
 
 [请加入QQ群或微信群获取](https://gitee.com/siam1026/siam-finance#关注和交流)，进群前先在右上角Star本项目
 
 ## 关联产品
 暹罗外卖 - 多商户入驻的外卖配送系统，微服务架构：[https://gitee.com/siam1026/siam-cloud](https://gitee.com/siam1026/siam-cloud)
+暹罗点餐 - 多门店连锁品牌的餐饮点餐系统，单体服务架构：[https://gitee.com/siam1026/siam-server](https://gitee.com/siam1026/siam-server)
 
 
 ## 系统模块
 
 ~~~
 com.siam     
-├── wxapplet-siam-user      // 前端-用户端微信小程序
-├── wxapplet-siam-shop      // 前端-商家端微信小程序
-├── wxapplet-siam-rider     // 前端-骑手端微信小程序
-├── vue-siam-shop           // 前端-商家管理后台 [80]
-├── vue-siam-admin          // 前端-超管调度后台 [80]
+├── vue-siam-admin           // 前端-管理后台 [80]
 ├── siam-system             // web接口服务 [9200]
 ├── siam-monitor            // 监控服务 [9100]
 ├── siam-generator          // 代码生成框架
@@ -85,7 +75,7 @@ com.siam
 ~~~
 
 
-## 站点演示
+## 站点演示【配置中~~~】
 
 > 【演示商家后台】：https://spa.show.siamit.cn/server-shop
 >
@@ -100,12 +90,7 @@ com.siam
 | <img src="./doc/images/wechat/微信小程序.jpg" width="200" /> |
 
 ## 项目中初始用户和密码
-
-- **小程序登录**：
-账号密码登录：siam，123456
-手机验证码登录：13121865386，123456
-- **商家后台登录**：用户：admin-ludian，密码：123456
-- **调度中心登录**：用户：admin，密码：123456
+- **管理后台登录**：用户：admin，密码：123456
 
 ## 项目文档
 
@@ -123,32 +108,18 @@ com.siam
 
 为了方便小伙伴们沟通交流，我创建了**微信群**（备注：**加群**），目前项目还存在很多不足之处，欢迎各位老哥进群进行技术交流，为了防止广告进入，希望加群的时候能添加备注，谢谢~
 
-|                   微信群【备注：加群】                   | QQ群（642629684）                       |
+|                   微信群【备注：加群-理财系统】                   | QQ群（642629684）                       |
 | :------------------------------------------------------: | :------------------------------------------------------: |
 | <img src="https://gitee.com/siam1026/siam-finance/raw/master/doc/images/wechat/添加暹罗.jpg" width="200" /> | <img src="https://gitee.com/siam1026/siam-finance/raw/master/doc/images/qq/qqGroup2.jpg" width="200" /> |
 
 
-## 微信小程序截图
-
-|                        微信小程序                         |                                                       |
-| :----------------------------------------------------: | :---------------------------------------------------: |
-|      ![image text](./doc/images/wxapplet-user/home.jpg)       |    ![image text](./doc/images/wxapplet-user/shop.jpg)    |
-|      ![image text](./doc/images/wxapplet-user/order_takeout.jpg)       |    ![image text](./doc/images/wxapplet-user/order_list.jpg)    |
-|      ![image text](./doc/images/wxapplet-user/coupons.jpg)       |    ![image text](./doc/images/wxapplet-user/points_mall_home.jpg)    |
-|      ![image text](./doc/images/wxapplet-user/my.jpg)       |    ![image text](./doc/images/wxapplet-user/vip.jpg)    |
-|      ![image text](./doc/images/wxapplet-user/reward_withdrawal.jpg)       |    ![image text](./doc/images/wxapplet-user/invite.jpg)    |
-
 ## 网站截图
 
-|                        商家后台                         |                                                       |
+|                        管理后台                         |                                                       |
 | :----------------------------------------------------: | :---------------------------------------------------: |
 |      ![image text](./doc/images/vue-shop/statisticGraph.png)       |    ![image text](./doc/images/vue-shop/refundOrderList.png)    |
 |      ![image text](./doc/images/vue-shop/goodsList.png)       |    ![image text](./doc/images/vue-shop/couponsList.png)    |
 |      ![image text](./doc/images/vue-shop/shopInfoImportant.png)       |    ![image text](./doc/images/vue-shop/ticketPrinterList.png)    |
-|                       **调度后台**                        |                                                       |
-|       ![image text](./doc/images/vue-admin/statisticGraph.png)        |      ![image text](./doc/images/vue-admin/memberList.png)       |
-|       ![image text](./doc/images/vue-admin/refundOrderList.png)        |      ![image text](./doc/images/vue-admin/shopList.png)       |
-|       ![image text](./doc/images/vue-admin/shopListOfApplyChangeData.png)        |      ![image text](./doc/images/vue-admin/couponsList.png)       |
 
 
 ## 赞赏
