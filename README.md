@@ -58,6 +58,7 @@
 
 ## 关联产品
 暹罗外卖 - 多商户入驻的外卖配送系统，微服务架构：[https://gitee.com/siam1026/siam-cloud](https://gitee.com/siam1026/siam-cloud)
+
 暹罗点餐 - 多门店连锁品牌的餐饮点餐系统，单体服务架构：[https://gitee.com/siam1026/siam-server](https://gitee.com/siam1026/siam-server)
 
 
@@ -83,18 +84,13 @@ com.siam
 >
 > 【演示账号】：[点击获取](https://gitee.com/siam1026/siam-finance/raw/master/doc/images/wechat/公众号_演示账号.png)
 >
-> 【小程序】暹罗理财的移动端版本，微信上架审核中，[请加入QQ群或微信群获取体验版本](https://gitee.com/siam1026/siam-finance#关注和交流)
-
-|                                                          |
-| :------------------------------------------------------: |
-| <img src="./doc/images/wechat/微信小程序.jpg" width="200" /> |
 
 ## 项目中初始用户和密码
 - **管理后台登录**：用户：admin，密码：123456
 
 ## 项目文档
 
-文档地址：https://gitee.com/siam1026/siam-finance/wikis/pages?sort_id=9187815&doc_id=4850414
+文档地址：https://gitee.com/siam1026/siam-finance/wikis/pages?sort_id=9580601&doc_id=5164185
 
 ## 项目地址
 
@@ -108,7 +104,7 @@ com.siam
 
 为了方便小伙伴们沟通交流，我创建了**微信群**（备注：**加群**），目前项目还存在很多不足之处，欢迎各位老哥进群进行技术交流，为了防止广告进入，希望加群的时候能添加备注，谢谢~
 
-|                   微信群【备注：加群-理财系统】                   | QQ群（642629684）                       |
+|                   微信群【备注：加群-理财系统】                   | QQ群（564717658）                       |
 | :------------------------------------------------------: | :------------------------------------------------------: |
 | <img src="https://gitee.com/siam1026/siam-finance/raw/master/doc/images/wechat/添加暹罗.jpg" width="200" /> | <img src="https://gitee.com/siam1026/siam-finance/raw/master/doc/images/qq/qqGroup2.jpg" width="200" /> |
 
@@ -117,9 +113,9 @@ com.siam
 
 |                        管理后台                         |                                                       |
 | :----------------------------------------------------: | :---------------------------------------------------: |
-|      ![image text](./doc/images/vue-shop/statisticGraph.png)       |    ![image text](./doc/images/vue-shop/refundOrderList.png)    |
-|      ![image text](./doc/images/vue-shop/goodsList.png)       |    ![image text](./doc/images/vue-shop/couponsList.png)    |
-|      ![image text](./doc/images/vue-shop/shopInfoImportant.png)       |    ![image text](./doc/images/vue-shop/ticketPrinterList.png)    |
+|      ![image text](./doc/images/vue-admin/fundTotalList.png)       |    ![image text](./doc/images/vue-admin/stockTotalList.png)    |
+|      ![image text](./doc/images/vue-admin/convertibleBondTotalList.png)       |      |
+
 
 
 ## 赞赏
