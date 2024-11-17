@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siam.system.modular.mod_finance.mapper.StockShorttermTradingMapper">
+    <resultMap id="BaseResultMap" type="com.siam.system.modular.mod_finance.entity.StockShorttermTrading" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="member_id" property="memberId" jdbcType="INTEGER" />
+        <result column="stock_id" property="stockId" jdbcType="INTEGER" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="amount" property="amount" jdbcType="DECIMAL" />
+        <result column="service_charge" property="serviceCharge" jdbcType="DECIMAL" />
+        <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+        <result column="price" property="price" jdbcType="DECIMAL" />
+        <result column="related_trading_id" property="relatedTradingId" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="income" property="income" jdbcType="DECIMAL" />
+        <result column="return_rate" property="returnRate" jdbcType="DECIMAL" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <resultMap id="CustomResultMap" type="java.util.Map" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="member_id" property="memberId" jdbcType="INTEGER" />
+        <result column="stock_id" property="stockId" jdbcType="INTEGER" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="amount" property="amount" jdbcType="DECIMAL" />
+        <result column="service_charge" property="serviceCharge" jdbcType="DECIMAL" />
+        <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+        <result column="price" property="price" jdbcType="DECIMAL" />
+        <result column="related_trading_id" property="relatedTradingId" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="income" property="income" jdbcType="DECIMAL" />
+        <result column="return_rate" property="returnRate" jdbcType="DECIMAL" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+</mapper>

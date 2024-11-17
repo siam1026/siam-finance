@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siam.system.modular.mod_finance.mapper.StockMapper">
+    <resultMap id="BaseResultMap" type="com.siam.system.modular.mod_finance.entity.Stock" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="code" property="code" jdbcType="VARCHAR" />
+        <result column="lastest_price" property="lastestPrice" jdbcType="DECIMAL" />
+        <result column="lastest_price_date" property="lastestPriceDate" jdbcType="DATE" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <resultMap id="CustomResultMap" type="java.util.Map" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="code" property="code" jdbcType="VARCHAR" />
+        <result column="lastest_price" property="lastestPrice" jdbcType="DECIMAL" />
+        <result column="lastest_price_date" property="lastestPriceDate" jdbcType="DATE" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+
+    <update id="updateBatchSomeColumn">
+        update bg_project_panoramic_development_plan set
+        <if test="entityMap[0].lastestPrice != null" >
+            lastest_price = case id
+            <foreach collection="entityMap" index="index" item="item" separator=" ">
+                when #{index} then #{item.lastestPrice}
+            </foreach>
+            end,
+        </if>
+        <if test="entityMap[0].lastestPriceDate != null" >
+            lastest_price_date = case id
+            <foreach collection="entityMap" index="index" item="item" separator=" ">
+                when #{index} then #{item.lastestPriceDate}
+            </foreach>
+            end,
+        </if>
+        update_time = now()
+        where id in
+        <foreach collection="idList" index="index" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+</mapper>

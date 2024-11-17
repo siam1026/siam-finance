@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>siam-system</artifactId>
+        <groupId>com.siam</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>system-provider</artifactId>
+
+    <name>system-provider</name>
+    <url>https://www.siamit.cn</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <!-- 引入系统模块API -->
+        <dependency>
+            <groupId>com.siam</groupId>
+            <artifactId>system-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <!-- 引入微信支付模块API -->
+        <dependency>
+            <groupId>com.siam</groupId>
+            <artifactId>weixin-pay</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <!-- 引入redis配置模块API -->
+        <!--<dependency>-->
+        <!--<groupId>com.siam</groupId>-->
+        <!--<artifactId>siam-redis</artifactId>-->
+        <!--<version>1.0</version>-->
+        <!--</dependency>-->
+
+        <!-- 引入mongodb配置模块API -->
+        <!--<dependency>-->
+        <!--<groupId>com.siam</groupId>-->
+        <!--<artifactId>siam-mongodb</artifactId>-->
+        <!--<version>1.0</version>-->
+        <!--</dependency>-->
+
+        <!-- 整合Actuator监控依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>2.3.3.RELEASE</version>
+        </dependency>
+
+        <!-- 整合prometheus -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+
+        <!-- 整合logstash -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>6.6</version>
+        </dependency>
+
+        <!-- 整合京东物流 -->
+        <dependency>
+            <groupId>com.jd</groupId>
+            <artifactId>lop-opensdk-support</artifactId>
+            <version>1.0.28</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/lib/lop-opensdk-support-1.0.28-SNAPSHOT.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jd</groupId>
+            <artifactId>EcapSDK</artifactId>
+            <type>jar</type>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/lib/ECAP_3.0_20240823100912.jar</systemPath>
+        </dependency>
+
+        <!-- 整合Actuator监控依赖 -->
+        <!-- [这个包是作图形化服务端监控客户端：如果不用图形化客户端就不要导这个包] -->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+    </dependencies>
+
+    <!--build内容也需要做替换，因为默认的spring-boot-maven-plugin这种方式，等到后期打包的时候他会一直提示你，你引入的依赖不存在！-->
+    <build>
+        <!-- 打包重命名，打包后文件名称：项目名 -->
+        <finalName>siam-finance</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.7.2</version>
+                <configuration>
+                    <!--  指定该Main Class为全局的唯一入口 -->
+                    <mainClass>com.siam.system.SiamApplication</mainClass>
+                    <includeSystemScope>true</includeSystemScope>
+                    <layout>ZIP</layout>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration><encoding>UTF-8</encoding>
+                    <!-- 过滤后缀为pem、pfx的证书文件 -->
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>cer</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>pem</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>pfx</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>p12</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
