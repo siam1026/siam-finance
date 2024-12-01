@@ -1,7 +1,9 @@
 package com.siam.system.modular.mod_finance.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.siam.system.modular.mod_finance.entity.CapitalRecord;
+import com.siam.system.modular.mod_finance.entity.TransactionCategory;
 import com.siam.system.modular.mod_finance.model.example.CapitalRecordExample;
 import com.siam.system.modular.mod_finance.model.param.CapitalRecordParam;
 import com.siam.system.modular.mod_finance.model.vo.CapitalStatisticsVo;
@@ -9,20 +11,9 @@ import com.siam.system.modular.mod_finance.model.vo.CapitalStatisticsVo;
 import java.util.List;
 import java.util.Map;
 
-public interface CapitalRecordService {
-    int countByExample(CapitalRecordExample example);
-
-    void deleteByPrimaryKey(Integer id);
-
-    void insertSelective(CapitalRecord record);
+public interface CapitalRecordService extends IService<CapitalRecord> {
 
     List<CapitalRecord> selectByExample(CapitalRecordExample example);
-
-    CapitalRecord selectByPrimaryKey(Integer id);
-
-    void updateByExampleSelective(CapitalRecord record, CapitalRecordExample example);
-
-    void updateByPrimaryKeySelective(CapitalRecord record);
 
     Page getListByPage(CapitalRecordParam param);
 

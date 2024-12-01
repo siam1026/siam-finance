@@ -2,6 +2,7 @@ package com.siam.system.modular.mod_finance.service_impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.siam.package_common.constant.Quantity;
 import com.siam.package_common.entity.BasicResult;
 import com.siam.package_common.enums.TimeTypeEnum;
@@ -12,8 +13,8 @@ import com.siam.system.modular.mod_finance.entity.CapitalRecord;
 import com.siam.system.modular.mod_finance.entity.CapitalType;
 import com.siam.system.modular.mod_finance.entity.Setting;
 import com.siam.system.modular.mod_finance.entity.TransactionCategory;
-import com.siam.system.modular.mod_finance.model.example.CapitalRecordExample;
 import com.siam.system.modular.mod_finance.mapper.CapitalRecordMapper;
+import com.siam.system.modular.mod_finance.model.example.CapitalRecordExample;
 import com.siam.system.modular.mod_finance.model.example.CapitalTypeExample;
 import com.siam.system.modular.mod_finance.model.param.CapitalRecordParam;
 import com.siam.system.modular.mod_finance.model.result.CapitalRecordResult;
@@ -37,7 +38,7 @@ import java.util.stream.Collectors;
 import static java.time.format.DateTimeFormatter.ISO_DATE;
 
 @Service
-public class CapitalRecordServiceImpl implements CapitalRecordService {
+public class CapitalRecordServiceImpl extends ServiceImpl<CapitalRecordMapper, CapitalRecord> implements CapitalRecordService {
 
     @Autowired
     private CapitalTypeService capitalTypeService;
@@ -54,34 +55,8 @@ public class CapitalRecordServiceImpl implements CapitalRecordService {
     @Autowired
     private MemberSessionManager memberSessionManager;
 
-    public int countByExample(CapitalRecordExample example){
-        return capitalRecordMapper.countByExample(example);
-    }
-
-    public void deleteByPrimaryKey(Integer id){
-        capitalRecordMapper.deleteByPrimaryKey(id);
-    }
-
-    public void insertSelective(CapitalRecord record){
-        Member loginMember = memberSessionManager.getSession(TokenUtil.getToken());
-        record.setMemberId(loginMember.getId());
-        capitalRecordMapper.insertSelective(record);
-    }
-
     public List<CapitalRecord> selectByExample(CapitalRecordExample example){
         return capitalRecordMapper.selectByExample(example);
-    }
-
-    public CapitalRecord selectByPrimaryKey(Integer id){
-        return capitalRecordMapper.selectByPrimaryKey(id);
-    }
-
-    public void updateByExampleSelective(CapitalRecord record, CapitalRecordExample example){
-        capitalRecordMapper.updateByExampleSelective(record, example);
-    }
-
-    public void updateByPrimaryKeySelective(CapitalRecord record){
-        capitalRecordMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
@@ -112,7 +87,7 @@ public class CapitalRecordServiceImpl implements CapitalRecordService {
         //如果操作关联的收支记录id不为空，则需要改变父记录的状态
         if(param.getRelatedRecordId() != null){
             //状态 0=无 1=部分还款 2=部分归还 3=部分收入 4=部分支出 5=已还款 6=已归还 7=已收入 8=已支出
-            CapitalRecord relatedCapitalRecord = this.selectByPrimaryKey(param.getRelatedRecordId());
+            CapitalRecord relatedCapitalRecord = this.getById(param.getRelatedRecordId());
             if(relatedCapitalRecord.getStatus()==Quantity.INT_5 || relatedCapitalRecord.getStatus()==Quantity.INT_6 || relatedCapitalRecord.getStatus()==Quantity.INT_7 || relatedCapitalRecord.getStatus()==Quantity.INT_8){
                 throw new StoneCustomerException("操作关联的收支记录已完成，不允许新增子记录");
             }
@@ -174,7 +149,7 @@ public class CapitalRecordServiceImpl implements CapitalRecordService {
             CapitalRecord updateCapitalRecord = new CapitalRecord();
             updateCapitalRecord.setId(relatedCapitalRecord.getId());
             updateCapitalRecord.setStatus(status);
-            this.updateByPrimaryKeySelective(updateCapitalRecord);
+            this.updateById(updateCapitalRecord);
 
             //自动为资金收支记录赋值 资金分类id、操作类型
             param.setCapitalTypeId(relatedCapitalRecord.getCapitalTypeId());
@@ -186,26 +161,26 @@ public class CapitalRecordServiceImpl implements CapitalRecordService {
         //添加资金收入与支出记录
         //capitalRecord.setCreateTime(new Date());
         param.setUpdateTime(new Date());
-        this.insertSelective(param);
+        this.save(param);
     }
 
     @Override
     public void update(CapitalRecordParam param) {
         BasicResult basicResult = new BasicResult();
 
-        CapitalRecord dbCapitalRecord = this.selectByPrimaryKey(param.getId());
+        CapitalRecord dbCapitalRecord = this.getById(param.getId());
         if(dbCapitalRecord == null){
             throw new StoneCustomerException("该资金收入与支出记录不存在，修改失败");
         }
 
         //修改资金收入与支出记录
         param.setUpdateTime(new Date());
-        this.updateByPrimaryKeySelective(param);
+        this.updateById(param);
 
         //如果操作关联的收支记录id不为空，则需要改变父记录的状态
         if(dbCapitalRecord.getRelatedRecordId() != Quantity.INT_0){
             //状态 0=无 1=部分还款 2=部分归还 3=部分收入 4=部分支出 5=已还款 6=已归还 7=已收入 8=已支出
-            CapitalRecord relatedCapitalRecord = this.selectByPrimaryKey(dbCapitalRecord.getRelatedRecordId());
+            CapitalRecord relatedCapitalRecord = this.getById(dbCapitalRecord.getRelatedRecordId());
             if(relatedCapitalRecord.getStatus()==Quantity.INT_5 || relatedCapitalRecord.getStatus()==Quantity.INT_6 || relatedCapitalRecord.getStatus()==Quantity.INT_7 || relatedCapitalRecord.getStatus()==Quantity.INT_8){
                 throw new StoneCustomerException("操作关联的收支记录已完成，不允许修改子记录");
             }
@@ -256,7 +231,7 @@ public class CapitalRecordServiceImpl implements CapitalRecordService {
             CapitalRecord updateCapitalRecord = new CapitalRecord();
             updateCapitalRecord.setId(relatedCapitalRecord.getId());
             updateCapitalRecord.setStatus(status);
-            this.updateByPrimaryKeySelective(updateCapitalRecord);
+            this.updateById(updateCapitalRecord);
         }
     }
 

@@ -1,7 +1,9 @@
 package com.siam.system.modular.mod_finance.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.siam.system.modular.mod_finance.entity.CapitalRecord;
+import com.siam.system.modular.mod_finance.entity.TransactionCategory;
 import com.siam.system.modular.mod_finance.model.example.CapitalRecordExample;
 import com.siam.system.modular.mod_finance.model.param.CapitalRecordParam;
 import com.siam.system.modular.mod_finance.model.result.CapitalRecordResult;
@@ -13,28 +15,9 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-public interface CapitalRecordMapper {
-    int countByExample(CapitalRecordExample example);
-
-    int deleteByExample(CapitalRecordExample example);
-
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(CapitalRecord record);
-
-    int insertSelective(CapitalRecord record);
+public interface CapitalRecordMapper extends BaseMapper<CapitalRecord> {
 
     List<CapitalRecord> selectByExample(CapitalRecordExample example);
-
-    CapitalRecord selectByPrimaryKey(Integer id);
-
-    int updateByExampleSelective(@Param("record") CapitalRecord record, @Param("example") CapitalRecordExample example);
-
-    int updateByExample(@Param("record") CapitalRecord record, @Param("example") CapitalRecordExample example);
-
-    int updateByPrimaryKeySelective(CapitalRecord record);
-
-    int updateByPrimaryKey(CapitalRecord record);
 
     @ResultMap("CustomResultMap")
     @Select("<script>select cr.*, b.name as transactionCategoryName from tb_capital_record cr left join tb_transaction_category b on cr.transaction_category_id = b.id " +
