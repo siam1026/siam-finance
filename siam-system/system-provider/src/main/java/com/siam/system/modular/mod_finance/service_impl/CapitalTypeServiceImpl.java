@@ -1,8 +1,8 @@
 package com.siam.system.modular.mod_finance.service_impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.siam.system.modular.mod_finance.entity.CapitalType;
-import com.siam.system.modular.mod_finance.model.example.CapitalTypeExample;
 import com.siam.system.modular.mod_finance.mapper.CapitalTypeMapper;
 import com.siam.system.modular.mod_finance.service.CapitalTypeService;
 import com.siam.system.modular.mod_user.auth.cache.MemberSessionManager;
@@ -11,11 +11,10 @@ import com.siam.system.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 
 @Service
-public class CapitalTypeServiceImpl implements CapitalTypeService {
+public class CapitalTypeServiceImpl extends ServiceImpl<CapitalTypeMapper, CapitalType> implements CapitalTypeService {
 
     @Autowired
     private CapitalTypeMapper capitalTypeMapper;
@@ -23,34 +22,22 @@ public class CapitalTypeServiceImpl implements CapitalTypeService {
     @Autowired
     private MemberSessionManager memberSessionManager;
 
-    public int countByExample(CapitalTypeExample example){
-        return capitalTypeMapper.countByExample(example);
-    }
-
     public void deleteByPrimaryKey(Integer id){
-        capitalTypeMapper.deleteByPrimaryKey(id);
+        capitalTypeMapper.deleteById(id);
     }
 
     public void insertSelective(CapitalType record){
         Member loginMember = memberSessionManager.getSession(TokenUtil.getToken());
         record.setMemberId(loginMember.getId());
-        capitalTypeMapper.insertSelective(record);
-    }
-
-    public List<CapitalType> selectByExample(CapitalTypeExample example){
-        return capitalTypeMapper.selectByExample(example);
+        capitalTypeMapper.insert(record);
     }
 
     public CapitalType selectByPrimaryKey(Integer id){
-        return capitalTypeMapper.selectByPrimaryKey(id);
-    }
-
-    public void updateByExampleSelective(CapitalType record, CapitalTypeExample example){
-        capitalTypeMapper.updateByExampleSelective(record, example);
+        return capitalTypeMapper.selectById(id);
     }
 
     public void updateByPrimaryKeySelective(CapitalType record){
-        capitalTypeMapper.updateByPrimaryKeySelective(record);
+        capitalTypeMapper.updateById(record);
     }
 
     @Override

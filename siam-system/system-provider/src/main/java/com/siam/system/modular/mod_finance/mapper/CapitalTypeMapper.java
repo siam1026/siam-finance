@@ -1,6 +1,8 @@
 package com.siam.system.modular.mod_finance.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.siam.system.modular.mod_finance.entity.CapitalRecord;
 import com.siam.system.modular.mod_finance.entity.CapitalType;
 import com.siam.system.modular.mod_finance.model.example.CapitalTypeExample;
 import org.apache.ibatis.annotations.Param;
@@ -10,28 +12,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 import java.util.Map;
 
-public interface CapitalTypeMapper {
-    int countByExample(CapitalTypeExample example);
-
-    int deleteByExample(CapitalTypeExample example);
-
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(CapitalType record);
-
-    int insertSelective(CapitalType record);
-
-    List<CapitalType> selectByExample(CapitalTypeExample example);
-
-    CapitalType selectByPrimaryKey(Integer id);
-
-    int updateByExampleSelective(@Param("record") CapitalType record, @Param("example") CapitalTypeExample example);
-
-    int updateByExample(@Param("record") CapitalType record, @Param("example") CapitalTypeExample example);
-
-    int updateByPrimaryKeySelective(CapitalType record);
-
-    int updateByPrimaryKey(CapitalType record);
+public interface CapitalTypeMapper extends BaseMapper<CapitalType> {
 
     @ResultMap("BaseResultMap")
     @Select("<script>select ct.* from tb_capital_type ct" +

@@ -1,23 +1,20 @@
 package com.siam.system.modular.mod_finance.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.siam.system.modular.mod_finance.entity.CapitalRecord;
 import com.siam.system.modular.mod_finance.entity.CapitalType;
 import com.siam.system.modular.mod_finance.model.example.CapitalTypeExample;
 
 import java.util.List;
 
-public interface CapitalTypeService {
-    int countByExample(CapitalTypeExample example);
+public interface CapitalTypeService extends IService<CapitalType> {
 
     void deleteByPrimaryKey(Integer id);
 
     void insertSelective(CapitalType record);
 
-    List<CapitalType> selectByExample(CapitalTypeExample example);
-
     CapitalType selectByPrimaryKey(Integer id);
-
-    void updateByExampleSelective(CapitalType record, CapitalTypeExample example);
 
     void updateByPrimaryKeySelective(CapitalType record);
 

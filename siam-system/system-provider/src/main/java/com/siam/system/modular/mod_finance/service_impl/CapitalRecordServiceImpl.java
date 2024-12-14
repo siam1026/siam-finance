@@ -248,9 +248,9 @@ public class CapitalRecordServiceImpl extends ServiceImpl<CapitalRecordMapper, C
         List<Map<String, Object>> expendStatisticList = null;
         if(param.getCapitalTypeId() == null){
             //按照大类别统计
-            CapitalTypeExample example = new CapitalTypeExample();
-            example.createCriteria().andNameNotLike("【已废弃】%").andNameNotLike("【不统计】%").andMemberIdEqualTo(loginMember.getId());
-            List<CapitalType> capitalTypeList = capitalTypeService.selectByExample(example);
+            LambdaQueryWrapper<CapitalType> queryWrapper = new LambdaQueryWrapper();
+            queryWrapper.notLike(CapitalType::getName, "【已废弃】%").notLike(CapitalType::getName, "【不统计】%").eq(CapitalType::getMemberId, loginMember.getId());
+            List<CapitalType> capitalTypeList = capitalTypeService.list(queryWrapper);
             typeList = capitalTypeList.stream().map(CapitalType::getName).distinct().collect(Collectors.toList());
 
             //查询类别、交易金额
@@ -362,9 +362,9 @@ public class CapitalRecordServiceImpl extends ServiceImpl<CapitalRecordMapper, C
         List<Map<String, Object>> statisticList = null;
         if(param.getCapitalTypeId() == null){
             //按照大类别统计
-            CapitalTypeExample example = new CapitalTypeExample();
-            example.createCriteria().andNameNotLike("【已废弃】%").andNameNotLike("【不统计】%").andMemberIdEqualTo(loginMember.getId());
-            List<CapitalType> capitalTypeList = capitalTypeService.selectByExample(example);
+            LambdaQueryWrapper<CapitalType> queryWrapper = new LambdaQueryWrapper();
+            queryWrapper.notLike(CapitalType::getName, "【已废弃】%").notLike(CapitalType::getName, "【不统计】%").eq(CapitalType::getMemberId, loginMember.getId());
+            List<CapitalType> capitalTypeList = capitalTypeService.list(queryWrapper);
             typeList = capitalTypeList.stream().map(CapitalType::getName).distinct().collect(Collectors.toList());
 
             //查询类别、交易金额
