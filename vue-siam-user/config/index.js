@@ -25,14 +25,14 @@ module.exports = {
     rootPath: '',
     name: 'siam-shop',
     http:{
-      //baseUrl: 'https://api.show.siamit.cn/siam-finance/', // production
-      //baseUrl4Test: 'https://api.show.siamit.cn/siam-finance/', // production_test
-      //developmentBaseUrl: 'https://api.show.siamit.cn/siam-finance', // development
-      //cashierBaseUrl: 'https://spa.show.siamit.cn/server-cashier' // cashier
+      // baseUrl: 'https://api.siamit.cn/siam-finance/', // production
+      // baseUrl4Test: 'https://api.siamit.cn/siam-finance/', // production_test
+      // developmentBaseUrl: 'https://api.siamit.cn/siam-finance', // development
+      // cashierBaseUrl: 'https://spa.show.siamit.cn/server-cashier' // cashier
 
-      baseUrl: 'http://localhost:9200/siam-finance', // production
-      baseUrl4Test: 'http://localhost:9200/siam-finance', // production_test
-      developmentBaseUrl: 'http://localhost:9200/siam-finance', // development
+      baseUrl: 'http://106.12.130.163:8000/siam-finance', // production
+      baseUrl4Test: 'http://106.12.130.163:8000/siam-finance', // production_test
+      developmentBaseUrl: 'http://106.12.130.163:8000/siam-finance', // development
       cashierBaseUrl: 'http://127.0.0.1:5174'
     },
     oss:{
