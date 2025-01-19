@@ -60,7 +60,7 @@ router.beforeEach((to, from, next) => {
     sessionStorage.removeItem('user');
     next({ path: '/QuickLogin' })
   } else if(to.path == '/') {
-    next({path: '/capitalRecordList_chuxu'})
+    next({path: '/capitalTypeList'})
   } else {
     next()
   }
