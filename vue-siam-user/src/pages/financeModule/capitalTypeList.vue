@@ -19,14 +19,32 @@
 			<el-table-column type="index" label="序号" width="50">
 				<template scope="scope">
 					<span>{{(searchMsg.pageNo - 1) * searchMsg.pageSize + scope.$index + 1}}</span>
-				</template>		
+				</template>
 			</el-table-column>
-			<el-table-column prop="name" label="资金分类名称"></el-table-column>
-			<el-table-column prop="description" label="介绍说明"></el-table-column>
+			<el-table-column prop="name" label="资金分类名称">
+				<!-- <template scope="scope">
+					<a href="javascript:void(0)" @click="goCapitalRecordList(scope.row.id, scope.row.name)" style="color:blue;font-weight:bold;">{{scope.row.name}}</a>
+				</template> -->
+			</el-table-column>
+			<el-table-column prop="description" label="介绍说明">
+				<template slot-scope="scope" v-if="scope.row.description != undefined">
+					<el-popover
+						placement="top-start"
+						width="300"
+						trigger="hover"
+						:disabled="scope.row.description.length <= 20"
+					>
+						<div v-html="scope.row.description.replace(/[\n\r]/g, '<br/>')"></div>
+						<span slot="reference" v-if="scope.row.description.length <= 20">{{scope.row.description}}</span>
+						<span slot="reference" v-if="scope.row.description.length > 20">{{scope.row.description.substr(0, 20) + "..."}}</span>
+					</el-popover>
+				</template>
+			</el-table-column>
 			<el-table-column prop="createTime" label="创建时间" :formatter="formatTime" sortable></el-table-column>
 			<el-table-column prop="updateTime" label="修改时间" :formatter="formatTime"></el-table-column>
-			<el-table-column label="操作" fixed="right" width="150">
+			<el-table-column label="操作" fixed="right">
 				<template slot-scope="scope">
+					<el-button type="success" size="small" @click="goCapitalRecordList(scope.row.id, scope.row.name)">跳转</el-button>
 					<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
 					<el-button type="danger" size="small" @click="handleDel(scope.row.id)">删除</el-button>
 				</template>
@@ -88,6 +106,12 @@
 			}
 		},
 		methods: {
+			goCapitalRecordList(id, name) {
+				if(id) { 
+					const routeData = this.$router.resolve({ path: 'capitalRecordList', query: { id: id, name: name}})
+					window.open(routeData.href, '_blank')
+				}
+			},
 			cellStyle({row, column, rowIndex, columnIndex}){
 				return "text-align:center";
 			},

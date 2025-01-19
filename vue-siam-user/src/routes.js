@@ -134,6 +134,8 @@ const completedGoldShorttermTradingList = () => import( './pages/goldModule/comp
 const viewGoldShorttermTrading = () => import( './pages/goldModule/viewGoldShorttermTrading.vue')
 
 //金融模块-资金管理
+const capitalTypeList = () => import( './pages/financeModule/capitalTypeList.vue')
+const capitalRecordList = () => import( './pages/financeModule/capitalRecordList.vue')
 const capitalRecordList_chuxu = () => import( './pages/financeModule/capitalRecordList_chuxu.vue')
 const viewCapitalRecord = () => import( './pages/financeModule/viewCapitalRecord.vue')
 
@@ -181,18 +183,15 @@ let routes = [
         hidden: true
     },
 
-
-
-
-
-
     {
       path: '/',
       component: Home,
       name: '资金管理',
       iconCls: 'el-icon-wallet',
       children: [
-          { path: '/capitalRecordList_chuxu', component: capitalRecordList_chuxu, name: '储蓄资金' },
+          { path: '/capitalTypeList', component: capitalTypeList, name: '资金分类' },
+          { path: '/capitalRecordList', component: capitalRecordList, name: '资金记录列表', hidden: true },
+          // { path: '/capitalRecordList_chuxu', component: capitalRecordList_chuxu, name: '储蓄资金' },
           { path: '/viewCapitalRecord', component: viewCapitalRecord, name: '查看资金收支记录', hidden: true },
       ]
     },
