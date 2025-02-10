@@ -40,8 +40,8 @@ public interface StockShorttermTradingMapper extends BaseMapper<StockShorttermTr
     @Select("<script>select fst.*, f.name as stockName from tb_stock_shortterm_trading fst left join tb_stock f on f.id = fst.stock_id" +
             "<where> 1=1 " +
             "<if test=\"stockShorttermTradingDto.id != null\"> AND fst.id = #{stockShorttermTradingDto.id} </if>" +
-            "<if test=\"stockShorttermTrading.memberId != null\"> AND fst.member_id = #{stockShorttermTrading.memberId} </if>" +
-            "<if test=\"stockShorttermTrading.stockId != null\"> AND fst.stock_id = #{stockShorttermTrading.stockId} </if>" +
+            "<if test=\"stockShorttermTradingDto.memberId != null\"> AND fst.member_id = #{stockShorttermTradingDto.memberId} </if>" +
+            "<if test=\"stockShorttermTradingDto.stockId != null\"> AND fst.stock_id = #{stockShorttermTradingDto.stockId} </if>" +
             "<if test=\"stockShorttermTradingDto.type != null\"> AND fst.type = #{stockShorttermTradingDto.type} </if>" +
             "<if test=\"stockShorttermTradingDto.amount != null\"> AND fst.amount = #{stockShorttermTradingDto.amount} </if>" +
             "<if test=\"stockShorttermTradingDto.quantity != null\"> AND fst.quantity = #{stockShorttermTradingDto.quantity} </if>" +

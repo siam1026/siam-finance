@@ -207,6 +207,51 @@ function newToFixed (){
   };
 }
 
+function changeDecimal(value, scale) {
+  var fValue = parseFloat(value);
+  if (isNaN(fValue)) {
+      // alert('请输入正确的数值');
+      return false;
+  }
+  var sValue = fValue.toString();
+  var pos_decimal = sValue.indexOf('.');
+  //如果保留的小数为0，则去掉小数点
+  if(scale == 0){
+    if (pos_decimal < 0) {
+      return sValue;
+    }else{
+      sValue = sValue.substring(0, pos_decimal);
+    }
+  }else{
+    if (pos_decimal < 0) {
+      pos_decimal = sValue.length;
+      sValue += '.';
+    }
+    while (sValue.length <= pos_decimal + scale) {
+        sValue += '0';
+    }
+  }
+  return sValue;
+}
+
+// 处理小数失精问题
+function NumberAdd(arg1, arg2) {
+  var r1, r2, m, n
+  try {
+    r1 = arg1.toString().split('.')[1].length
+  } catch (e) {
+    r1 = 0
+  }
+  try {
+    r2 = arg2.toString().split('.')[1].length
+  } catch (e) {
+    r2 = 0
+  }
+  m = Math.pow(10, Math.max(r1, r2))
+  n = (r1 >= r2) ? r1 : r2
+  return ((arg1 * m + arg2 * m) / m).toFixed(n)
+}
+
 export default {
   install: function(Vue, name = '$utils') {
     Object.defineProperty(Vue.prototype, name, { value: this });
@@ -219,7 +264,9 @@ export default {
   Base64,
   MSDataTransfer,
   DeepCopy,
-  newToFixed
+  newToFixed,
+  changeDecimal,
+  NumberAdd
 }
 
 export {formatDate}

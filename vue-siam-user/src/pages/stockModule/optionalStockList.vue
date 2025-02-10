@@ -19,10 +19,10 @@
 					<el-button type="primary" @click="getList">查询</el-button>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" @click="handleEdit">新增</el-button>
+					<!-- <el-button type="primary" @click="handleEdit">新增</el-button> -->
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" plain @click="syncPrice">同步最新价格</el-button>
+					<!-- <el-button type="primary" plain @click="syncPrice">同步最新价格</el-button> -->
 				</el-form-item>
 			</el-form>
 		</el-col>
@@ -54,13 +54,12 @@
 			<el-table-column prop="remarks" label="备注"></el-table-column>
 			<el-table-column prop="createTime" label="创建时间" :formatter="formatTime" sortable></el-table-column>
 			<el-table-column prop="updateTime" label="修改时间" :formatter="formatTime"></el-table-column>
-			<el-table-column label="操作" fixed="right" width="150">
+			<!-- <el-table-column label="操作" fixed="right" width="150">
 				<template slot-scope="scope">
 					<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
 					<el-button type="danger" size="small" @click="handleDel(scope.row.id)">删除</el-button>
 				</template>
-				<!-- scope.$index, scope.row -->
-			</el-table-column>
+			</el-table-column> -->
 		</el-table>
 
 		<!--工具条-->
