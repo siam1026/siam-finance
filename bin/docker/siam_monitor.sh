@@ -1,5 +1,5 @@
 ###构建docker镜像
-cd /root/project/siam-server/siam-monitor/
+cd /root/project/siam-finance/siam-monitor/
 
 docker build -t siam-monitor:v1.0 .
 
@@ -16,9 +16,9 @@ spawn docker login --username=siam registry-vpc.cn-hangzhou.aliyuncs.com
 expect "password:"
 send "123456"
 
-docker tag siam-monitor:v1.0 registry-vpc.cn-hangzhou.aliyuncs.com/siam-server/siam-monitor:v1.0
+docker tag siam-monitor:v1.0 registry-vpc.cn-hangzhou.aliyuncs.com/siam-finance/siam-monitor:v1.0
 
-docker push registry-vpc.cn-hangzhou.aliyuncs.com/siam-server/siam-monitor:v1.0
+docker push registry-vpc.cn-hangzhou.aliyuncs.com/siam-finance/siam-monitor:v1.0
 
 if [ "$1" = "logs" ];then
   ###打印运行日志

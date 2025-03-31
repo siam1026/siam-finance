@@ -1,10 +1,10 @@
 <p align=center>
   <a href="http://www.siamit.cn">
-    <img src="./doc/images/gitee/logo.png" alt="暹罗理财" style="width:200px;height:200px">
+    <img src="./doc/images/gitee/logo.png" alt="暹罗记账" style="width:200px;height:200px">
   </a>
 </p>
 
-<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">暹罗理财 v1.0</h1>
+<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">暹罗记账 v1.0</h1>
 <h4 align="center">基于SpringBoot开发的个人家庭理财记账系统</h4>
 
 <p align="center">
@@ -21,19 +21,19 @@
 
 ##  前言
 
-**微信公众号【[暹罗siam](https://gitee.com/siam1026/siam-finance/raw/master/doc/images/wechat/公众号.jpg)】**，未来将会在公众号上持续性的输出很多原创小知识以及学习资源，欢迎各位小伙伴关注我，和我一起共同学习，同时我也希望各位小伙伴能够给**暹罗理财**项目多多 **Star** 支持，您的**点赞**就是我维护的动力！
+**微信公众号【[暹罗siam](https://gitee.com/siam1026/siam-finance/raw/master/doc/images/wechat/公众号.jpg)】**，未来将会在公众号上持续性的输出很多原创小知识以及学习资源，欢迎各位小伙伴关注我，和我一起共同学习，同时我也希望各位小伙伴能够给**暹罗记账**项目多多 **Star** 支持，您的**点赞**就是我维护的动力！
 
 <p align=center>
     <img src="./doc/images/wechat/公众号.jpg" width="500" />
 </p>
 
-项目已有较详细的 [项目搭建文档](https://gitee.com/siam1026/siam-finance/wikis/pages?sort_id=9187815&doc_id=4850414) ，同时包括了 **Windows**、**Linux** 以及 **Docker** 环境下暹罗理财的搭建。在使用过程中遇到问题时，首先认真阅读**项目搭建文档**~
+项目已有较详细的 [项目搭建文档](https://gitee.com/siam1026/siam-finance/wikis/pages?sort_id=9187815&doc_id=4850414) ，同时包括了 **Windows**、**Linux** 以及 **Docker** 环境下暹罗记账的搭建。在使用过程中遇到问题时，首先认真阅读**项目搭建文档**~
 
 【提问】推荐使用 [Gitee issue](https://gitee.com/siam1026/siam-finance/issues) 进行提问，因为issue解决后能够保留解决记录，帮助其它小伙伴避坑。其次可以使用 <a href="https://gitee.com/siam1026/siam-finance#关注和交流">QQ群 </a>  或者 <a href="https://gitee.com/siam1026/siam-finance#关注和交流">微信群 </a> 进行提问。群里提问注意提问的时间，把遇到**问题的详细过程都描述清楚**，最好**配上图文信息**，这样能有利于更高效的解决问题。
 
 ## 项目介绍
 
-暹罗理财是一款Java个人家庭理财记账系统，该系统包含数据中心、资金管理、基金投资、股票投资、可转债投资、系统配置等核心功能，支持OCR一键识别录入。
+暹罗记账是一款Java个人家庭理财记账系统，该系统包含数据中心、资金管理、基金投资、股票投资、可转债投资、系统配置等核心功能，支持OCR一键识别录入。
 
 1. 数据中心
 2. 资金管理，资金分类、动态资金分类记录菜单展示
@@ -58,7 +58,7 @@
 
 ## 关联产品
 暹罗外卖 - 多商户入驻的外卖配送系统，微服务架构：[https://gitee.com/siam1026/siam-cloud](https://gitee.com/siam1026/siam-cloud)  
-暹罗点餐 - 多门店连锁品牌的餐饮点餐系统，单体服务架构：[https://gitee.com/siam1026/siam-server](https://gitee.com/siam1026/siam-server)
+暹罗记账 - 多门店连锁品牌的餐饮点餐系统，单体服务架构：[https://gitee.com/siam1026/siam-finance](https://gitee.com/siam1026/siam-finance)
 
 
 ## 系统模块

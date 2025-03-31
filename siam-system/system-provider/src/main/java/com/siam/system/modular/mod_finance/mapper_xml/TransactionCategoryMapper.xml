@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siam.system.modular.mod_finance.mapper.TransactionCategoryMapper" >
+
+  <!-- 通用查询结果列 -->
+  <sql id="Base_Column_List">
+      id AS "id", member_id AS "memberId", parent_id AS "parentId", name AS "name", type AS "type", sort_number AS "sortNumber", create_time AS "createTime", update_time AS "updateTime"
+  </sql>
+
+  <select id="list" resultType="com.siam.system.modular.mod_finance.model.result.TransactionCategoryResult" parameterType="com.siam.system.modular.mod_finance.model.param.TransactionCategoryParam" >
+      select
+      <include refid="Base_Column_List"/>
+      from tb_transaction_category where 1 = 1
+      <if test="paramCondition.id != null"> and id = #{paramCondition.id} </if>
+      <if test="paramCondition.memberId != null"> and member_id = #{paramCondition.memberId} </if>
+      <if test="paramCondition.parentId != null"> and parent_id = #{paramCondition.parentId} </if>
+      <if test="paramCondition.name != null and paramCondition.name != ''"> and name like CONCAT('%',#{paramCondition.name},'%') </if>
+      <if test="paramCondition.type != null"> and type = #{paramCondition.type} </if>
+      <if test="paramCondition.sortNumber != null"> and sort_number = #{paramCondition.sortNumber} </if>
+      order by sort_number, create_time, id asc
+  </select>
+</mapper>
