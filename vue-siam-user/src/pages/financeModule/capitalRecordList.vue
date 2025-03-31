@@ -304,7 +304,7 @@
 					name: [{ required: true, message: '请选择名称', trigger: 'change' }],
 					amount: [{ required: true, message: '请输入买入金额', trigger: 'change' }],
 					// remarks: [{ required: true, message: '请输入备注', trigger: 'blur' }],
-					transactionCategoryId: [{ required: true, message: '请选择交易分类', trigger: 'change' }],
+					// transactionCategoryId: [{ required: true, message: '请选择交易分类', trigger: 'change' }],
 					createTime: [{ required: true, message: '请输入产生时间', trigger: 'blur' }]
 				},
 				//编辑界面数据

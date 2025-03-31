@@ -30,9 +30,9 @@ module.exports = {
       // developmentBaseUrl: 'https://api.siamit.cn/siam-finance', // development
       // cashierBaseUrl: 'https://spa.show.siamit.cn/server-cashier' // cashier
 
-      baseUrl: 'http://106.12.130.163:8000/siam-finance', // production
-      baseUrl4Test: 'http://106.12.130.163:8000/siam-finance', // production_test
-      developmentBaseUrl: 'http://106.12.130.163:8000/siam-finance', // development
+      baseUrl: 'http://127.0.0.1:9200/siam-finance', // production
+      baseUrl4Test: 'http://127.0.0.1:9200/siam-finance', // production_test
+      developmentBaseUrl: 'http://127.0.0.1:9200/siam-finance', // development
       cashierBaseUrl: 'http://127.0.0.1:5174'
     },
     oss:{
