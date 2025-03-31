@@ -437,8 +437,8 @@ public class CapitalRecordServiceImpl extends ServiceImpl<CapitalRecordMapper, C
         Member loginMember = memberSessionManager.getSession(TokenUtil.getToken());
         param.setMemberId(loginMember.getId());
 
-        //统计分类为[保底资金、反哺资金、储蓄资金、业余收入、博弈资金、博弈资金B、储蓄资金(含保底资金、反哺资金)]的交易数据
-        //值为-1代表查询储蓄资金(含保底资金、反哺资金)分类
+        //统计分类为[]的交易数据
+        //值为-1代表查询分类
 
         //返回内容：日期、交易数量、交易金额
 
@@ -525,130 +525,6 @@ public class CapitalRecordServiceImpl extends ServiceImpl<CapitalRecordMapper, C
         map.put("incomeAmount", incomeAmount);
         map.put("expendAmount", expendAmount);
         map.put("leaveAmount", leaveAmount);
-        return map;
-    }
-
-    @Override
-    public Map totalCapitalStatistic(CapitalRecordParam param) {
-        Member loginMember = memberSessionManager.getSession(TokenUtil.getToken());
-        param.setMemberId(loginMember.getId());
-
-        //获取资金分类id
-        int capitalTypeId_chuxu = capitalTypeService.selectByName("储蓄资金").getId();
-        int capitalTypeId_boyi = capitalTypeService.selectByName("博弈资金").getId();
-        int capitalTypeId_yeyu = capitalTypeService.selectByName("业余收入").getId();
-        int capitalTypeId_other = capitalTypeService.selectByName("【不统计】其它资产").getId();
-
-        //计算各个资金分类的收入情况
-        param.setType(0);
-        param.setCapitalTypeId(capitalTypeId_chuxu);
-        BigDecimal income_chuxu = capitalRecordMapper.sumAmount(param);
-
-        param.setCapitalTypeId(capitalTypeId_yeyu);
-        BigDecimal income_yeyu = capitalRecordMapper.sumAmount(param);
-
-        param.setCapitalTypeId(capitalTypeId_boyi);
-        BigDecimal income_boyi = capitalRecordMapper.sumAmount(param);
-
-        param.setCapitalTypeId(capitalTypeId_other);
-        BigDecimal income_other = capitalRecordMapper.sumAmount(param);
-
-        //计算各个资金分类的支出情况
-        param.setType(1);
-        param.setCapitalTypeId(capitalTypeId_chuxu);
-        BigDecimal expenditure_chuxu = capitalRecordMapper.sumAmount(param);
-
-        param.setCapitalTypeId(capitalTypeId_yeyu);
-        BigDecimal expenditure_yeyu = capitalRecordMapper.sumAmount(param);
-
-        param.setCapitalTypeId(capitalTypeId_boyi);
-        BigDecimal expenditure_boyi = capitalRecordMapper.sumAmount(param);
-
-        param.setCapitalTypeId(capitalTypeId_other);
-        BigDecimal expenditure_other = capitalRecordMapper.sumAmount(param);
-
-        //计算各个资金分类的现存资金情况
-        BigDecimal leave_chuxu = income_chuxu.subtract(expenditure_chuxu);
-        BigDecimal leave_boyi = income_boyi.subtract(expenditure_boyi);
-        BigDecimal leave_yeyu = income_yeyu.subtract(expenditure_yeyu);
-        BigDecimal leave_other = income_other.subtract(expenditure_other);
-
-        //总共待转收入的资金
-        param = new CapitalRecordParam();
-        param.setType(4);
-        BigDecimal totalDeferredIncome = capitalRecordMapper.sumAmountAllowRelatedRecordId(param);
-        //待转收入已入账的资金
-        param = new CapitalRecordParam();
-        param.setType(0);
-        param.setRelatedRecordId(-1);
-        BigDecimal returnedDeferredIncome = capitalRecordMapper.sumAmountAllowRelatedRecordId(param);
-        //待转收入未入账的资金
-        BigDecimal leaveDeferredIncome = totalDeferredIncome.subtract(returnedDeferredIncome);
-
-        //总共借出的资金
-        param = new CapitalRecordParam();
-        param.setType(3);
-        BigDecimal totalLendAmount = capitalRecordMapper.sumAmountAllowRelatedRecordId(param);
-        //借出已归还的资金
-        param = new CapitalRecordParam();
-        param.setType(7);
-        BigDecimal returnedLendAmount = capitalRecordMapper.sumAmountAllowRelatedRecordId(param);
-        //借出未归还的资金
-        BigDecimal leaveLendAmount = totalLendAmount.subtract(returnedLendAmount);
-
-        //反哺资金
-        BigDecimal fanbuAmount = BigDecimal.ZERO;
-        LambdaQueryWrapper<TransactionCategory> queryWrapper = new LambdaQueryWrapper();
-        queryWrapper.eq(TransactionCategory::getName, "反哺资金");
-        TransactionCategory transactionCategory = transactionCategoryService.getOne(queryWrapper);
-        if(transactionCategory != null){
-            param = new CapitalRecordParam();
-            param.setTransactionCategoryId(transactionCategory.getId());
-            fanbuAmount = capitalRecordMapper.sumAmount(param);
-        }
-
-        Setting setting = settingService.selectCurrent();
-
-        //公积金余额
-        BigDecimal accumulationFundBalance = setting.getAccumulationFundBalance();
-
-        //医保余额
-        BigDecimal medicalInsuranceBalance = setting.getMedicalInsuranceBalance();
-
-        //总资金(金融资产)
-        BigDecimal totalAmount = leave_chuxu.add(leave_boyi).add(leave_yeyu).add(leaveDeferredIncome).add(fanbuAmount);
-
-        //总资金(含其它资产)
-        BigDecimal totalAmountWithOther = leave_chuxu.add(leave_boyi).add(leave_yeyu).add(leaveDeferredIncome).add(fanbuAmount).add(leave_other);
-
-        //可用资金
-        BigDecimal availableAmount = leave_chuxu.add(leave_boyi).add(leave_yeyu).subtract(accumulationFundBalance);
-
-        //可用资金(含封存资金)
-        BigDecimal availableAmountWithBlocked = leave_chuxu.add(leave_boyi).add(leave_yeyu);
-
-        //已落袋资金
-        BigDecimal receivedAmount = leave_chuxu.add(leave_boyi).add(leave_yeyu).add(fanbuAmount);
-
-        //不可用资金
-        BigDecimal unavailableAmount = accumulationFundBalance.add(leaveDeferredIncome).add(fanbuAmount).add(leave_other);
-
-        Map map = new HashMap();
-        map.put("totalAmount", totalAmount);
-        map.put("totalAmountWithOther", totalAmountWithOther);
-        map.put("availableAmount", availableAmount);
-        map.put("availableAmountWithBlocked", availableAmountWithBlocked);
-        map.put("receivedAmount", receivedAmount);
-        map.put("unavailableAmount", unavailableAmount);
-        map.put("leave_chuxu", leave_chuxu);
-        map.put("leave_boyi", leave_boyi);
-        map.put("leave_yeyu", leave_yeyu);
-        map.put("leave_other", leave_other);
-        map.put("leaveDeferredIncome", leaveDeferredIncome);
-        map.put("leaveLendAmount", leaveLendAmount);
-        map.put("fanbuAmount", fanbuAmount);
-        map.put("accumulationFundBalance", accumulationFundBalance);
-        map.put("medicalInsuranceBalance", medicalInsuranceBalance);
         return map;
     }
 }

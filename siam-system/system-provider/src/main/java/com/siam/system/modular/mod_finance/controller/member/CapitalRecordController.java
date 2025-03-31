@@ -123,15 +123,4 @@ public class CapitalRecordController {
         Map map = capitalRecordService.statistics(param);
         return BasicResult.success(map);
     }
-
-    /**
-     * 统计总资产分布
-     *
-     * @author JiangP
-     */
-    @PostMapping(value = "/totalCapitalStatistic")
-    public BasicResult totalCapitalStatistic(@RequestBody @Validated(value = {}) CapitalRecordParam param) {
-        Map map = capitalRecordService.totalCapitalStatistic(param);
-        return BasicResult.success(map);
-    }
 }

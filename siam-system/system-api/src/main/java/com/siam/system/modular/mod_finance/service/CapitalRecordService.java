@@ -66,11 +66,4 @@ public interface CapitalRecordService extends IService<CapitalRecord> {
      * @author JiangP
      */
     Map statistics(CapitalRecordParam param);
-
-    /**
-     * 统计总资产分布
-     *
-     * @author JiangP
-     */
-    Map totalCapitalStatistic(CapitalRecordParam param);
 }
