@@ -21,7 +21,7 @@
 
 ##  前言
 
-**微信公众号【[暹罗siam](https://gitee.com/siam1026/siam-finance/raw/master/doc/images/wechat/公众号.jpg)】**，未来将会在公众号上持续性的输出很多原创小知识以及学习资源，欢迎各位小伙伴关注我，和我一起共同学习，同时我也希望各位小伙伴能够给**暹罗记账**项目多多 **Star** 支持，您的**点赞**就是我维护的动力！
+**微信公众号【[暹罗Tech](https://gitee.com/siam1026/siam-finance/raw/master/doc/images/wechat/公众号.jpg)】**，未来将会在公众号上持续性的输出很多原创小知识以及学习资源，欢迎各位小伙伴关注我，和我一起共同学习，同时我也希望各位小伙伴能够给**暹罗记账**项目多多 **Star** 支持，您的**点赞**就是我维护的动力！
 
 <p align=center>
     <img src="./doc/images/wechat/公众号.jpg" width="500" />
@@ -75,14 +75,11 @@ com.siam
 ~~~
 
 
-## 站点演示【配置中~~~】
+## 站点地址
 
-> 【演示商家后台】：https://spa.show.siamit.cn/server-shop
+> 【用户中心web端】：http://106.12.130.163/finance-user
 >
-> 【演示调度后台】：https://spa.show.siamit.cn/server-admin
->
-> 【演示账号】：[点击获取](https://gitee.com/siam1026/siam-finance/raw/master/doc/images/wechat/公众号_演示账号.png)
->
+> 临时验证码：252525
 
 ## 项目中初始用户和密码
 - **管理后台登录**：用户：admin，密码：123456
