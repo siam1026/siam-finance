@@ -77,7 +77,7 @@ com.siam
 
 ## 站点地址
 
-> 【用户中心web端】：http://106.12.130.163/finance-user
+> 【用户中心web端】：[http://106.12.130.163/finance-user](http://spa.siamit.cn/finance-user)
 >
 > 临时验证码：252525
 
@@ -121,4 +121,5 @@ com.siam
 |                       微信                       |                      支付宝                       |
 | :----------------------------------------------: | :-----------------------------------------------: |
 | <img src="./doc/images/wechat/wx_payment.png" width="200" /> | <img src="./doc/images/wechat/zfb_payment.png" width="200" /> |
+
 
